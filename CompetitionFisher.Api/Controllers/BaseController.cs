@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace CompetitionFisher.Api.Controllers
 {
@@ -13,11 +10,17 @@ namespace CompetitionFisher.Api.Controllers
         {
             get
             {
-                var claim = User.Claims.FirstOrDefault(x => x.Type == "auth0userId"); // TODO: remove magic string. see https://stackoverflow.com/questions/41046879/asp-mvc-ef6-multi-tenant-based-on-host
-                if (claim == null)
-                    return string.Empty;
+                string userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-                return claim.Value;
+                // remove auth0| or facebook| from auth0_userId
+                // TODO: check out if auth0 uses this when different accounts are joined
+                //
+                //if (!string.IsNullOrEmpty(userId) && userId.Contains("|"))
+                //{
+                //    userId = userId.Substring(userId.IndexOf("|") + 1);
+                //}
+
+                return userId;
             }
         }
     }

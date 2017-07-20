@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CompetitionFisher.Api.Controllers
 {
@@ -29,7 +28,7 @@ namespace CompetitionFisher.Api.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return $"{Auth0UserId}";
         }
 
         // POST api/values
