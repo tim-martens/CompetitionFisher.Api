@@ -21,11 +21,6 @@ namespace CompetitionFisher.Data.Context
             Configuration.LazyLoadingEnabled = false;
         }
 
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<Enrollment> Enrollments { get; set; }
-
-
         public DbSet<Championship> Championships { get; set; }
         public DbSet<Competition> Competitions { get; set; }
         public DbSet<Contestant> Contestants { get; set; }
