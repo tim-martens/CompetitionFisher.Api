@@ -10,5 +10,6 @@ namespace CompetitionFisher.Data.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public ICollection<Competition> Competitions { get; set; }
+        public ICollection<Result> Results { get; set; }
     }
 }

@@ -27,6 +27,11 @@ namespace CompetitionFisher.Data.Models.Configurations
 
             // Competitions
             // Configured on other side of the relationship
+
+            // Results
+            HasMany(el => el.Results)
+                .WithRequired(r => r.Contestant)
+                .HasForeignKey(r => r.ContestantId);
         }
     }
 }

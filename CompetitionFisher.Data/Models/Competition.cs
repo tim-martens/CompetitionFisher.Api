@@ -13,6 +13,7 @@ namespace CompetitionFisher.Data.Models
         public DateTime Date { get; set; }
         public virtual Championship Championship { get; set; }
         public ICollection<Contestant> Contestants { get; set; }
+        public ICollection<Result> Results { get; set; }
 
     }
 }

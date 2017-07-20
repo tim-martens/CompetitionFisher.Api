@@ -62,12 +62,18 @@
     <Compile Include="Migrations\201707200738095_add-contestant.Designer.cs">
       <DependentUpon>201707200738095_add-contestant.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707201040236_add-result.cs" />
+    <Compile Include="Migrations\201707201040236_add-result.Designer.cs">
+      <DependentUpon>201707201040236_add-result.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Championship.cs" />
     <Compile Include="Models\Competition.cs" />
     <Compile Include="Models\Configurations\ChampionshipConfiguration.cs" />
     <Compile Include="Infrastructure\EntityTypeConfigurationConstants.cs" />
     <Compile Include="Models\Configurations\CompetitionConfiguration.cs" />
+    <Compile Include="Models\Configurations\ResultConfiguration.cs" />
+    <Compile Include="Models\Result.cs" />
     <Compile Include="Models\Contestant.cs" />
     <Compile Include="Models\Configurations\ContestantConfiguration.cs" />
     <Compile Include="Models\Course.cs" />
@@ -88,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707200738095_add-contestant.resx">
       <DependentUpon>201707200738095_add-contestant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707201040236_add-result.resx">
+      <DependentUpon>201707201040236_add-result.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

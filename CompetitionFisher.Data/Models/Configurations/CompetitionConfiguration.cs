@@ -45,6 +45,11 @@ namespace CompetitionFisher.Data.Models.Configurations
                     cc.MapLeftKey("CompetitionId");
                     cc.MapRightKey("ContestantId");
                 });
+
+            // Results
+            HasMany(el => el.Results)
+                .WithRequired(r => r.Competition)
+                .HasForeignKey(r => r.CompetitionId);
         }
     }
 }
