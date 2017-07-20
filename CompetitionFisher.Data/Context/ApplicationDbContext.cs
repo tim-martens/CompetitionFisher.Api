@@ -28,6 +28,7 @@ namespace CompetitionFisher.Data.Context
 
         public DbSet<Championship> Championships { get; set; }
         public DbSet<Competition> Competitions { get; set; }
+        public DbSet<Contestant> Contestants { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -41,6 +42,7 @@ namespace CompetitionFisher.Data.Context
             // Entity configurations
             modelBuilder.Configurations.Add(new ChampionshipConfiguration());
             modelBuilder.Configurations.Add(new CompetitionConfiguration());
+            modelBuilder.Configurations.Add(new ContestantConfiguration());
         }
     }
 }

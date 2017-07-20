@@ -35,6 +35,16 @@ namespace CompetitionFisher.Data.Models.Configurations
 
             // Championship
             // Configured on other side of the relationship
+
+            // Contestants
+            HasMany(el => el.Contestants)
+                .WithMany(c => c.Competitions)
+                .Map(cc =>
+                {
+                    cc.ToTable("ContestantCompetition");
+                    cc.MapLeftKey("CompetitionId");
+                    cc.MapRightKey("ContestantId");
+                });
         }
     }
 }

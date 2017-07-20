@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CompetitionFisher.Data.Models
 {
@@ -11,6 +12,7 @@ namespace CompetitionFisher.Data.Models
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public virtual Championship Championship { get; set; }
+        public ICollection<Contestant> Contestants { get; set; }
 
     }
 }
