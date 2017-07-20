@@ -17,7 +17,7 @@ namespace CompetitionFisher.Api.Controllers
         private SchoolPersistenceManager PersistenceManager;
 
         // called via DI 
-        public SchoolModelController(SchoolContext context)
+        public SchoolModelController(ApplicationDbContext context)
         {
             PersistenceManager = new SchoolPersistenceManager(context);
         }
@@ -48,9 +48,9 @@ namespace CompetitionFisher.Api.Controllers
         }
     }
 
-    internal class SchoolPersistenceManager : EFPersistenceManager<SchoolContext>
+    internal class SchoolPersistenceManager : EFPersistenceManager<ApplicationDbContext>
     {
-        public SchoolPersistenceManager(SchoolContext context) : base(context) { }
+        public SchoolPersistenceManager(ApplicationDbContext context) : base(context) { }
 
         // additional stuff goes here. Checkout the NorthwindIBModelController of the Breeze.AspNetCore.InternalTest.sln in the breeze.server.net repo
         // https://github.com/Breeze/breeze.server.net/blob/master/Tests/Test.AspNetCore/Controllers/NorthwindIBModelController.cs

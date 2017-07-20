@@ -56,8 +56,8 @@ namespace CompetitionFisher.Api
 
             mvcBuilder.AddMvcOptions(o => { o.Filters.Add(new GlobalExceptionFilter()); });
 
-            var connString = Configuration.GetConnectionString("SchoolContext");
-            services.AddScoped<SchoolContext>(_ => new SchoolContext(connString));
+            var connString = Configuration.GetConnectionString("ApplicationDbContext");
+            services.AddScoped<ApplicationDbContext>(_ => new ApplicationDbContext(connString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

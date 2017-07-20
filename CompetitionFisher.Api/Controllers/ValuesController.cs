@@ -8,9 +8,9 @@ namespace CompetitionFisher.Api.Controllers
     [Route("api/[controller]")]
     public class ValuesController : BaseController
     {
-        private readonly SchoolContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ValuesController(SchoolContext context)
+        public ValuesController(ApplicationDbContext context)
         {
             _context = context;
         }
