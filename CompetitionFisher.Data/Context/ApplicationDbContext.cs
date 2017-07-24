@@ -7,7 +7,7 @@ namespace CompetitionFisher.Data.Context
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext() : base(nameOrConnectionString: "ApplicationDbContext")
+        public ApplicationDbContext() : base("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CompetitionFisher;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
         {
             // Disable proxy creation as this messes up the data service.
             Configuration.ProxyCreationEnabled = false;

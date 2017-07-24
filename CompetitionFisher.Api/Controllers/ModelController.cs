@@ -3,24 +3,25 @@ using Breeze.Persistence;
 using Breeze.Persistence.EF6;
 using CompetitionFisher.Data.Context;
 using CompetitionFisher.Data.Models;
+using CompetitionFisher.Data.UOW;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
+using System.Data.Entity;
 using System.Linq;
 
 namespace CompetitionFisher.Api.Controllers
 {
     [Authorize]
-    [Route("breeze/[controller]/[action]")]
     [BreezeQueryFilter]
     public class ModelController : BaseController
     {
-        private CompetitionFisherPersistenceManager PersistenceManager;
+        private readonly UnitOfWork _uow;
 
         // called via DI 
         public ModelController(ApplicationDbContext context)
         {
-            PersistenceManager = new CompetitionFisherPersistenceManager(context);
+            _uow = new UnitOfWork(context);
         }
 
         //[Authorize("read:messages")]
@@ -31,47 +32,32 @@ namespace CompetitionFisher.Api.Controllers
         //}
 
         [HttpGet]
-        public IActionResult Metadata()
-        {
-            return Ok(PersistenceManager.Metadata());
-        }
-
-        [HttpPost]
-        public SaveResult SaveChanges([FromBody] JObject saveBundle)
-        {
-            return PersistenceManager.SaveChanges(saveBundle);
-        }
-
-        [HttpGet]
+        // ~breeze/model/championships
         public IQueryable<Championship> Championships()
         {
-            return PersistenceManager.Context.Championships;
+            return _uow.Championships.All();
         }
 
         [HttpGet]
+        // ~breeze/model/competitions
         public IQueryable<Competition> Competitions()
         {
-            return PersistenceManager.Context.Competitions;
+            return _uow.Competitions.All()
+                .Include(el => el.Championship);
         }
 
         [HttpGet]
+        // ~breeze/model/contestants
         public IQueryable<Contestant> Contestants()
         {
-            return PersistenceManager.Context.Contestants;
+            return _uow.Contestants.All();
         }
 
         [HttpGet]
+        // ~breeze/model/results
         public IQueryable<Result> Results()
         {
-            return PersistenceManager.Context.Results;
+            return _uow.Results.All();
         }
-    }
-
-    internal class CompetitionFisherPersistenceManager : EFPersistenceManager<ApplicationDbContext>
-    {
-        public CompetitionFisherPersistenceManager(ApplicationDbContext context) : base(context) { }
-
-        // additional stuff goes here. Checkout the NorthwindIBModelController of the Breeze.AspNetCore.InternalTest.sln in the breeze.server.net repo
-        // https://github.com/Breeze/breeze.server.net/blob/master/Tests/Test.AspNetCore/Controllers/NorthwindIBModelController.cs
     }
 }

@@ -6,6 +6,7 @@ namespace CompetitionFisher.Api.Controllers
 {
     public class BaseController : Controller
     {
+        
         public string Auth0UserId
         {
             get

@@ -43,8 +43,10 @@ namespace CompetitionFisher.Api
             });
 
             //Breeze
-            mvcBuilder.AddJsonOptions(opt => {
+            mvcBuilder.AddJsonOptions(opt =>
+            {
                 var ss = JsonSerializationFns.UpdateWithDefaults(opt.SerializerSettings);
+                
                 var resolver = ss.ContractResolver;
                 if (resolver != null)
                 {
@@ -73,7 +75,11 @@ namespace CompetitionFisher.Api
             };
 
             app.UseJwtBearerAuthentication(options);
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "Default", template: "breeze/{action}", defaults: new { Controller = "Default" });
+                routes.MapRoute(name: "Module", template: "breeze/{controller}/{action}");
+            });
 
         }
     }
